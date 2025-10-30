@@ -1,0 +1,95 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  pull_request:
+    branches:
+      - main
+      - 'releases/**'
+
+jobs:
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v5
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          # Use GitHub Container Registry (ghcr) so the image can be pushed from the workflow
+          images: ghcr.io/OpenModelica/crossbuild
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        id: build-image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+    # Expose the image tag(s) produced by the metadata action as a job output so
+    # downstream jobs can reference and pull the exact image.
+    outputs:
+      image: ${{ steps.meta.outputs.tags }}
+
+
+  test-compile:
+    name: Test Docker image across toolchains
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain: ["i686-linux-gnu", "i686-w64-mingw32", "x86_64-linux-gnu", "x86_64-w64-mingw32"]
+    timeout-minutes: 60
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v5
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull image pushed by build job
+        shell: bash
+        run: |
+          docker pull "${{ needs.build.outputs.image }}"
+
+      - name: Test cross-compilation for matrix toolchain
+        shell: bash
+        env:
+          TOOLCHAIN: ${{ matrix.toolchain }}
+        run: |
+          # Strip potential .cmake suffix and construct toolchain file path inside container
+          TOOLCHAIN_BASE="${TOOLCHAIN%%.cmake}"
+          TOOLCHAIN_FILE="/work/toolchain/${TOOLCHAIN_BASE}.cmake"
+
+          docker run --rm \
+            -v "${{ github.workspace }}":/work \
+            -w /work \
+            "${{ needs.build.outputs.image }}" \
+            bash -lc "\
+              cmake -S test/resources/FMU_Interaction1/sources \
+                    -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN_BASE} \
+                    -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
+                    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} && \
+              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN_BASE} --target install && \
+              test -f test/resources/FMU_Interaction1/binaries/linux64/Interaction1.so"

@@ -1,0 +1,44 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(gdb) Launch omc",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/home/USER/workdir/OpenModelica/build_cmake/install_cmake/bin/omc",
+      "args": [
+        "genFMUResources.mos"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/test",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Ignore power-fail (SIGPWR) in GDB: don't stop or print; still pass to program",
+          "text": "-interpreter-exec console \"handle SIGPWR nostop noprint pass\"",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Ignore CPU time limit exceeded (SIGXCPU) in GDB: don't stop or print; still pass to program",
+          "text": "-interpreter-exec console \"handle SIGXCPU nostop noprint pass\"",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

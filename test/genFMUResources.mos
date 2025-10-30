@@ -1,0 +1,23 @@
+loadModel(Modelica, {"4.1.0"}); getErrorString();
+
+mkdir("resources"); getErrorString();
+cd("resources"); getErrorString();
+
+system("rm -rf FMU_Interaction1/"); getErrorString();
+
+setCommandLineOptions("--fmuRuntimeDepends=none"); getErrorString();
+getErrorString();
+buildModelFMU(Modelica.Blocks.Examples.Interaction1
+              version = "2.0",
+              fmuType = "me",
+              platforms = {
+                "x86_64-linux-gnu docker run crossbuild:latest",
+                "i686-linux-gnu docker run crossbuild:latest",
+                "x86_64-w64-mingw32 docker run crossbuild:latest",
+                "i686-w64-mingw32 docker run crossbuild:latest"
+              },
+              includeResources = true);
+getErrorString();
+
+system("unzip -qq Interaction1.fmu -d FMU_Interaction1"); getErrorString();
+system("rm -r Interaction1* FMU_Interaction1/binaries/ FMU_Interaction1/documentation/ FMU_Interaction1/resources/"); getErrorString();
