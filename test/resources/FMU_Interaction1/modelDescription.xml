@@ -1,0 +1,1709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="Modelica.Blocks.Examples.Interaction1"
+  guid="{e8423ae4-f60a-499d-a4d3-970bf40a172c}"
+  description="Demonstrates the usage of blocks from Modelica.Blocks.Interaction.Show"
+  version=""
+  generationTool="OpenModelica Compiler v1.26.0-dev-426-g7fcb459d2c-cmake"
+  generationDateAndTime="2025-10-30T15:19:25Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="13">
+  <ModelExchange
+    modelIdentifier="Interaction1"
+    needsExecutionTool="false"
+    completedIntegratorStepNotNeeded="false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+    providesDirectionalDerivative="false">
+    <SourceFiles>
+      <File name="Interaction1.c" />
+      <File name="Interaction1_functions.c" />
+      <File name="Interaction1_records.c" />
+      <File name="Interaction1_01exo.c" />
+      <File name="Interaction1_02nls.c" />
+      <File name="Interaction1_03lsy.c" />
+      <File name="Interaction1_04set.c" />
+      <File name="Interaction1_05evt.c" />
+      <File name="Interaction1_06inz.c" />
+      <File name="Interaction1_07dly.c" />
+      <File name="Interaction1_08bnd.c" />
+      <File name="Interaction1_09alg.c" />
+      <File name="Interaction1_10asr.c" />
+      <File name="Interaction1_11mix.c" />
+      <File name="Interaction1_12jac.c" />
+      <File name="Interaction1_13opt.c" />
+      <File name="Interaction1_14lnz.c" />
+      <File name="Interaction1_15syn.c" />
+      <File name="Interaction1_16dae.c" />
+      <File name="Interaction1_17inl.c" />
+      <File name="Interaction1_18spd.c" />
+      <File name="Interaction1_init_fmu.c" />
+      <File name="Interaction1_FMU.c" />
+      <File name="./gc/memory_pool.c" />
+      <File name="./gc/omc_gc.c" />
+      <File name="./util/base_array.c" />
+      <File name="./util/boolean_array.c" />
+      <File name="./util/context.c" />
+      <File name="./util/division.c" />
+      <File name="./util/doubleEndedList.c" />
+      <File name="./util/generic_array.c" />
+      <File name="./util/index_spec.c" />
+      <File name="./util/integer_array.c" />
+      <File name="./util/list.c" />
+      <File name="./util/modelica_string_lit.c" />
+      <File name="./util/modelica_string.c" />
+      <File name="./util/ModelicaUtilities.c" />
+      <File name="./util/omc_error.c" />
+      <File name="./util/omc_file.c" />
+      <File name="./util/omc_init.c" />
+      <File name="./util/omc_mmap.c" />
+      <File name="./util/omc_msvc.c" />
+      <File name="./util/omc_numbers.c" />
+      <File name="./util/parallel_helper.c" />
+      <File name="./util/rational.c" />
+      <File name="./util/real_array.c" />
+      <File name="./util/ringbuffer.c" />
+      <File name="./util/simulation_options.c" />
+      <File name="./util/string_array.c" />
+      <File name="./util/utility.c" />
+      <File name="./util/varinfo.c" />
+      <File name="./math-support/pivot.c" />
+      <File name="./simulation/arrayIndex.c" />
+      <File name="./simulation/jacobian_util.c" />
+      <File name="./simulation/omc_simulation_util.c" />
+      <File name="./simulation/options.c" />
+      <File name="./simulation/simulation_info_json.c" />
+      <File name="./simulation/simulation_omc_assert.c" />
+      <File name="./simulation/solver/delay.c" />
+      <File name="./simulation/solver/fmi_events.c" />
+      <File name="./simulation/solver/model_help.c" />
+      <File name="./simulation/solver/omc_math.c" />
+      <File name="./simulation/solver/spatialDistribution.c" />
+      <File name="./simulation/solver/stateset.c" />
+      <File name="./simulation/solver/synchronous.c" />
+      <File name="./simulation/solver/initialization/initialization.c" />
+      <File name="./meta/meta_modelica_catch.c" />
+      <File name="./external_solvers/dgemm.c" />
+      <File name="./external_solvers/dgemv.c" />
+      <File name="./external_solvers/dger.c" />
+      <File name="./external_solvers/dscal.c" />
+      <File name="./external_solvers/dswap.c" />
+      <File name="./external_solvers/dtrmm.c" />
+      <File name="./external_solvers/dtrmv.c" />
+      <File name="./external_solvers/dtrsm.c" />
+      <File name="./external_solvers/idamax.c" />
+      <File name="./external_solvers/lsame.c" />
+      <File name="./external_solvers/dgesc2.c" />
+      <File name="./external_solvers/dgesv.c" />
+      <File name="./external_solvers/dgetc2.c" />
+      <File name="./external_solvers/dgetf2.c" />
+      <File name="./external_solvers/dgetrf.c" />
+      <File name="./external_solvers/dgetri.c" />
+      <File name="./external_solvers/dgetrs.c" />
+      <File name="./external_solvers/dlabad.c" />
+      <File name="./external_solvers/dlamch.c" />
+      <File name="./external_solvers/dlaswp.c" />
+      <File name="./external_solvers/dtrti2.c" />
+      <File name="./external_solvers/dtrtri.c" />
+      <File name="./external_solvers/ieeeck.c" />
+      <File name="./external_solvers/ilaenv.c" />
+      <File name="./external_solvers/iparmq.c" />
+      <File name="./external_solvers/xerbla.c" />
+      <File name="./external_solvers/F77_aloc.c" />
+      <File name="./external_solvers/exit_.c" />
+      <File name="./external_solvers/i_nint.c" />
+      <File name="./external_solvers/pow_di.c" />
+      <File name="./external_solvers/s_cat.c" />
+      <File name="./external_solvers/s_cmp.c" />
+      <File name="./external_solvers/s_copy.c" />
+      <File name="./external_solvers/cminpack.h" />
+      <File name="./external_solvers/minpack.h" />
+      <File name="./external_solvers/enorm_.c" />
+      <File name="./external_solvers/hybrj_.c" />
+      <File name="./external_solvers/dpmpar_.c" />
+      <File name="./external_solvers/qrfac_.c" />
+      <File name="./external_solvers/qform_.c" />
+      <File name="./external_solvers/dogleg_.c" />
+      <File name="./external_solvers/r1updt_.c" />
+      <File name="./external_solvers/r1mpyq_.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTables.c" />
+      <File name="ModelicaExternalC/ModelicaMatIO.c" />
+      <File name="ModelicaExternalC/ModelicaIO.c" />
+      <File name="ModelicaExternalC/ModelicaStandardTablesDummyUsertab.c" />
+      <File name="ModelicaExternalC/snprintf.c" />
+    </SourceFiles>
+  </ModelExchange>
+  <UnitDefinitions>
+    <Unit name="s">
+      <BaseUnit s="1" />
+    </Unit>
+  </UnitDefinitions>
+  <TypeDefinitions>
+    <SimpleType name="Modelica.Blocks.Types.Extrapolation">
+      <Enumeration>
+        <Item name="HoldLastPoint" value="1"/>
+        <Item name="LastTwoPoints" value="2"/>
+        <Item name="Periodic" value="3"/>
+        <Item name="NoExtrapolation" value="4"/>
+      </Enumeration>
+    </SimpleType>
+    <SimpleType name="Modelica.Blocks.Types.Smoothness">
+      <Enumeration>
+        <Item name="LinearSegments" value="1"/>
+        <Item name="ContinuousDerivative" value="2"/>
+        <Item name="ConstantSegments" value="3"/>
+        <Item name="MonotoneContinuousDerivative1" value="4"/>
+        <Item name="MonotoneContinuousDerivative2" value="5"/>
+        <Item name="ModifiedContinuousDerivative" value="6"/>
+      </Enumeration>
+    </SimpleType>
+    <SimpleType name="Modelica.Blocks.Types.TimeEvents">
+      <Enumeration>
+        <Item name="Always" value="1"/>
+        <Item name="AtDiscontinuities" value="2"/>
+        <Item name="NoTimeEvents" value="3"/>
+      </Enumeration>
+    </SimpleType>
+  </TypeDefinitions>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="10.0" tolerance="1e-6" stepSize="0.02"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.y[1]"
+    valueReference="5"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.y[1]"
+    valueReference="7"
+    description="Connector of Real output signals"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="realValue.number"
+    valueReference="8"
+    description="Number to visualize if use_numberPort=false (time varying)"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="timeTable.y"
+    valueReference="14"
+    description="Connector of Real output signal"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.offset[1]"
+    valueReference="27"
+    description="Offsets of output signals"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.shiftTime"
+    valueReference="29"
+    description="Shift time of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.startTime"
+    valueReference="30"
+    description="Output = offset for time &lt; startTime"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.t_max"
+    valueReference="31"
+    description="Maximum abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.t_maxScaled"
+    valueReference="32"
+    description="Maximum (scaled) abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.t_min"
+    valueReference="33"
+    description="Minimum abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.t_minScaled"
+    valueReference="34"
+    description="Minimum (scaled) abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[1,1]"
+    valueReference="35"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[1,2]"
+    valueReference="36"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[2,1]"
+    valueReference="37"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "15" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[2,2]"
+    valueReference="38"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "16" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[3,1]"
+    valueReference="39"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "17" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[3,2]"
+    valueReference="40"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "18" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[4,1]"
+    valueReference="41"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "19" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[4,2]"
+    valueReference="42"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "20" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[5,1]"
+    valueReference="43"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "21" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[5,2]"
+    valueReference="44"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "22" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[6,1]"
+    valueReference="45"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "23" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[6,2]"
+    valueReference="46"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "24" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[7,1]"
+    valueReference="47"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "25" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[7,2]"
+    valueReference="48"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "26" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[8,1]"
+    valueReference="49"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "27" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[8,2]"
+    valueReference="50"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "28" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[9,1]"
+    valueReference="51"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "29" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[9,2]"
+    valueReference="52"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "30" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[10,1]"
+    valueReference="53"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "31" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.table[10,2]"
+    valueReference="54"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "32" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.timeScale"
+    valueReference="55"
+    description="Time scale of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real min="2.220446049250313e-16" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "33" -->
+  <ScalarVariable
+    name="booleanTable.realToBoolean.threshold"
+    valueReference="56"
+    description="Output signal y is true, if input u &gt;= threshold"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.5"/>
+  </ScalarVariable>
+  <!-- Index of variable = "34" -->
+  <ScalarVariable
+    name="booleanTable.shiftTime"
+    valueReference="57"
+    description="Shift time of table"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "35" -->
+  <ScalarVariable
+    name="booleanTable.startTime"
+    valueReference="58"
+    description="Output = false for time &lt; startTime"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-1e60" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "36" -->
+  <ScalarVariable
+    name="booleanTable.table[1]"
+    valueReference="59"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "37" -->
+  <ScalarVariable
+    name="booleanTable.table[2]"
+    valueReference="60"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "38" -->
+  <ScalarVariable
+    name="booleanTable.table[3]"
+    valueReference="61"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "39" -->
+  <ScalarVariable
+    name="booleanTable.table[4]"
+    valueReference="62"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "40" -->
+  <ScalarVariable
+    name="booleanTable.table[5]"
+    valueReference="63"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="5.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "41" -->
+  <ScalarVariable
+    name="booleanTable.table[6]"
+    valueReference="64"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="6.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "42" -->
+  <ScalarVariable
+    name="booleanTable.table[7]"
+    valueReference="65"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="7.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "43" -->
+  <ScalarVariable
+    name="booleanTable.table[8]"
+    valueReference="66"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="8.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "44" -->
+  <ScalarVariable
+    name="booleanTable.table[9]"
+    valueReference="67"
+    description="Vector of time points. At every time point, the output y gets its opposite value (e.g., table={0,1})"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="9.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "45" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.offset[1]"
+    valueReference="68"
+    description="Offsets of output signals"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "46" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.shiftTime"
+    valueReference="70"
+    description="Shift time of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "47" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.startTime"
+    valueReference="71"
+    description="Output = offset for time &lt; startTime"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "48" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.t_max"
+    valueReference="72"
+    description="Maximum abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "49" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.t_maxScaled"
+    valueReference="73"
+    description="Maximum (scaled) abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "50" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.t_min"
+    valueReference="74"
+    description="Minimum abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "51" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.t_minScaled"
+    valueReference="75"
+    description="Minimum (scaled) abscissa value defined in table"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "52" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[1,1]"
+    valueReference="76"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "53" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[1,2]"
+    valueReference="77"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "54" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[2,1]"
+    valueReference="78"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "55" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[2,2]"
+    valueReference="79"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "56" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[3,1]"
+    valueReference="80"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "57" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[3,2]"
+    valueReference="81"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "58" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[4,1]"
+    valueReference="82"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "59" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[4,2]"
+    valueReference="83"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "60" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[5,1]"
+    valueReference="84"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "61" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[5,2]"
+    valueReference="85"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "62" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[6,1]"
+    valueReference="86"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "63" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.table[6,2]"
+    valueReference="87"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "64" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.timeScale"
+    valueReference="88"
+    description="Time scale of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real min="2.220446049250313e-16" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "65" -->
+  <ScalarVariable
+    name="integerTable.shiftTime"
+    valueReference="89"
+    description="Shift time of first table column"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "66" -->
+  <ScalarVariable
+    name="integerTable.startTime"
+    valueReference="90"
+    description="Output = 0 for time &lt; startTime"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="-1e60" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "67" -->
+  <ScalarVariable
+    name="integerTable.table[1,1]"
+    valueReference="91"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "68" -->
+  <ScalarVariable
+    name="integerTable.table[1,2]"
+    valueReference="92"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "69" -->
+  <ScalarVariable
+    name="integerTable.table[2,1]"
+    valueReference="93"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "70" -->
+  <ScalarVariable
+    name="integerTable.table[2,2]"
+    valueReference="94"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "71" -->
+  <ScalarVariable
+    name="integerTable.table[3,1]"
+    valueReference="95"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "72" -->
+  <ScalarVariable
+    name="integerTable.table[3,2]"
+    valueReference="96"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "73" -->
+  <ScalarVariable
+    name="integerTable.table[4,1]"
+    valueReference="97"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "74" -->
+  <ScalarVariable
+    name="integerTable.table[4,2]"
+    valueReference="98"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="6.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "75" -->
+  <ScalarVariable
+    name="integerTable.table[5,1]"
+    valueReference="99"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "76" -->
+  <ScalarVariable
+    name="integerTable.table[5,2]"
+    valueReference="100"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "77" -->
+  <ScalarVariable
+    name="integerTable.table[6,1]"
+    valueReference="101"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="6.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "78" -->
+  <ScalarVariable
+    name="integerTable.table[6,2]"
+    valueReference="102"
+    description="Table matrix (first column: time; second column: y)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "79" -->
+  <ScalarVariable
+    name="start.buttonTimeTable[1]"
+    valueReference="103"
+    description="Time instants where button is pressed"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "80" -->
+  <ScalarVariable
+    name="start.buttonTimeTable[2]"
+    valueReference="104"
+    description="Time instants where button is pressed"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "81" -->
+  <ScalarVariable
+    name="stop.buttonTimeTable[1]"
+    valueReference="125"
+    description="Time instants where button is pressed"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "82" -->
+  <ScalarVariable
+    name="stop.buttonTimeTable[2]"
+    valueReference="126"
+    description="Time instants where button is pressed"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "83" -->
+  <ScalarVariable
+    name="timeTable.offset"
+    valueReference="147"
+    description="Offset of output signal y"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "84" -->
+  <ScalarVariable
+    name="timeTable.shiftTime"
+    valueReference="148"
+    description="Shift time of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "85" -->
+  <ScalarVariable
+    name="timeTable.startTime"
+    valueReference="149"
+    description="Output y = offset for time &lt; startTime"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "86" -->
+  <ScalarVariable
+    name="timeTable.table[1,1]"
+    valueReference="150"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "87" -->
+  <ScalarVariable
+    name="timeTable.table[1,2]"
+    valueReference="151"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "88" -->
+  <ScalarVariable
+    name="timeTable.table[2,1]"
+    valueReference="152"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "89" -->
+  <ScalarVariable
+    name="timeTable.table[2,2]"
+    valueReference="153"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "90" -->
+  <ScalarVariable
+    name="timeTable.table[3,1]"
+    valueReference="154"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "91" -->
+  <ScalarVariable
+    name="timeTable.table[3,2]"
+    valueReference="155"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "92" -->
+  <ScalarVariable
+    name="timeTable.table[4,1]"
+    valueReference="156"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="3.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "93" -->
+  <ScalarVariable
+    name="timeTable.table[4,2]"
+    valueReference="157"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="6.3"/>
+  </ScalarVariable>
+  <!-- Index of variable = "94" -->
+  <ScalarVariable
+    name="timeTable.table[5,1]"
+    valueReference="158"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "95" -->
+  <ScalarVariable
+    name="timeTable.table[5,2]"
+    valueReference="159"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="4.2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "96" -->
+  <ScalarVariable
+    name="timeTable.table[6,1]"
+    valueReference="160"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="6.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "97" -->
+  <ScalarVariable
+    name="timeTable.table[6,2]"
+    valueReference="161"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "98" -->
+  <ScalarVariable
+    name="timeTable.table[7,1]"
+    valueReference="162"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="6.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "99" -->
+  <ScalarVariable
+    name="timeTable.table[7,2]"
+    valueReference="163"
+    description="Table matrix (time = first column; e.g., table=[0, 0; 1, 1; 2, 4])"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Real start="2.1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "100" -->
+  <ScalarVariable
+    name="timeTable.timeScale"
+    valueReference="164"
+    description="Time scale of first table column"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Real min="2.220446049250313e-16" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "101" -->
+  <ScalarVariable
+    name="booleanTable.realToBoolean.u"
+    valueReference="5"
+    description="Connector of Real input signal"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "102" -->
+  <ScalarVariable
+    name="integerTable.realToInteger.u"
+    valueReference="7"
+    description="Connector of Real input signal"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "103" -->
+  <ScalarVariable
+    name="realValue.numberPort"
+    valueReference="14"
+    description="Number to be shown in diagram layer if use_numberPort = true"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "104" -->
+  <ScalarVariable
+    name="realValue.showNumber"
+    valueReference="14"
+    >
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "105" -->
+  <ScalarVariable
+    name="integerTable.y"
+    valueReference="0"
+    description="Connector of Integer output signal"
+    variability="discrete"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "106" -->
+  <ScalarVariable
+    name="integerValue.number"
+    valueReference="1"
+    description="Number to visualize if use_numberPort=false (time varying)"
+    variability="discrete"
+    initial="exact">
+    <Integer start="0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "107" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.columns[1]"
+    valueReference="3"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "108" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.extrapolation"
+    valueReference="4"
+    description="Extrapolation of data outside the definition range"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Extrapolation"/>
+  </ScalarVariable>
+  <!-- Index of variable = "109" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.nHeaderLines"
+    valueReference="5"
+    description="Number of header lines to ignore for CSV file"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Integer start="0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "110" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.nout"
+    valueReference="6"
+    description="Number of outputs"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "111" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.smoothness"
+    valueReference="7"
+    description="Smoothness of table interpolation"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Smoothness"/>
+  </ScalarVariable>
+  <!-- Index of variable = "112" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.timeEvents"
+    valueReference="8"
+    description="Time event handling of table interpolation"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.TimeEvents" start="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "113" -->
+  <ScalarVariable
+    name="booleanTable.extrapolation"
+    valueReference="9"
+    description="Extrapolation of data outside the definition range"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Extrapolation" start="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "114" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.columns[1]"
+    valueReference="11"
+    description="Columns of table to be interpolated"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "115" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.extrapolation"
+    valueReference="12"
+    description="Extrapolation of data outside the definition range"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Extrapolation"/>
+  </ScalarVariable>
+  <!-- Index of variable = "116" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.nHeaderLines"
+    valueReference="13"
+    description="Number of header lines to ignore for CSV file"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Integer start="0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "117" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.nout"
+    valueReference="14"
+    description="Number of outputs"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "118" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.smoothness"
+    valueReference="15"
+    description="Smoothness of table interpolation"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Smoothness"/>
+  </ScalarVariable>
+  <!-- Index of variable = "119" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.timeEvents"
+    valueReference="16"
+    description="Time event handling of table interpolation"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.TimeEvents" start="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "120" -->
+  <ScalarVariable
+    name="integerTable.extrapolation"
+    valueReference="17"
+    description="Extrapolation of data outside the definition range"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Enumeration declaredType="Modelica.Blocks.Types.Extrapolation" start="1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "121" -->
+  <ScalarVariable
+    name="realValue.significantDigits"
+    valueReference="19"
+    description="Number of significant digits to be shown"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Integer start="2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "122" -->
+  <ScalarVariable
+    name="integerTable.realToInteger.y"
+    valueReference="0"
+    description="Connector of Integer output signal"
+    variability="discrete"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "123" -->
+  <ScalarVariable
+    name="integerValue.numberPort"
+    valueReference="0"
+    description="Number to be shown in diagram layer if use_numberPort = true"
+    variability="discrete"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "124" -->
+  <ScalarVariable
+    name="integerValue.showNumber"
+    valueReference="0"
+    variability="discrete"
+    >
+    <Integer/>
+  </ScalarVariable>
+  <!-- Index of variable = "125" -->
+  <ScalarVariable
+    name="booleanTable.y"
+    valueReference="9"
+    description="Connector of Boolean output signal"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "126" -->
+  <ScalarVariable
+    name="booleanValue.active"
+    valueReference="10"
+    description="Boolean variable to visualize if use_activePort=false (time varying)"
+    variability="discrete"
+    initial="exact">
+    <Boolean start="false"/>
+  </ScalarVariable>
+  <!-- Index of variable = "127" -->
+  <ScalarVariable
+    name="start.on"
+    valueReference="11"
+    variability="discrete"
+    initial="exact">
+    <Boolean start="false"/>
+  </ScalarVariable>
+  <!-- Index of variable = "128" -->
+  <ScalarVariable
+    name="start.reset[1]"
+    valueReference="13"
+    description="Reset button to false, if an element of reset becomes true"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "129" -->
+  <ScalarVariable
+    name="stop.on"
+    valueReference="15"
+    variability="discrete"
+    initial="exact">
+    <Boolean start="false"/>
+  </ScalarVariable>
+  <!-- Index of variable = "130" -->
+  <ScalarVariable
+    name="stop.reset[1]"
+    valueReference="17"
+    description="Reset button to false, if an element of reset becomes true"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "131" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.tableOnFile"
+    valueReference="20"
+    description="= true, if table is defined on file or in function usertab"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "132" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.verboseExtrapolation"
+    valueReference="21"
+    description="= true, if warning messages are to be printed if time is outside the table definition range"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "133" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.verboseRead"
+    valueReference="22"
+    description="= true, if info message that file is loading is to be printed"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Boolean start="true"/>
+  </ScalarVariable>
+  <!-- Index of variable = "134" -->
+  <ScalarVariable
+    name="booleanTable.startValue"
+    valueReference="23"
+    description="Start value of y. At time = table[1], y changes to 'not startValue'"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Boolean start="false"/>
+  </ScalarVariable>
+  <!-- Index of variable = "135" -->
+  <ScalarVariable
+    name="booleanValue.use_activePort"
+    valueReference="24"
+    description="= true, if activePort enabled"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "136" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.tableOnFile"
+    valueReference="26"
+    description="= true, if table is defined on file or in function usertab"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "137" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.verboseExtrapolation"
+    valueReference="27"
+    description="= true, if warning messages are to be printed if time is outside the table definition range"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "138" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.verboseRead"
+    valueReference="28"
+    description="= true, if info message that file is loading is to be printed"
+    variability="fixed"
+    causality="parameter"
+    >
+    <Boolean start="true"/>
+  </ScalarVariable>
+  <!-- Index of variable = "139" -->
+  <ScalarVariable
+    name="integerValue.use_numberPort"
+    valueReference="29"
+    description="= true, if numberPort enabled"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "140" -->
+  <ScalarVariable
+    name="realValue.use_numberPort"
+    valueReference="30"
+    description="= true, if numberPort enabled"
+    variability="fixed"
+    causality="calculatedParameter"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "141" -->
+  <ScalarVariable
+    name="booleanTable.realToBoolean.y"
+    valueReference="9"
+    description="Connector of Boolean output signal"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "142" -->
+  <ScalarVariable
+    name="booleanValue.activePort"
+    valueReference="9"
+    description="Boolean variable to be shown in diagram layer if use_activePort = true"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "143" -->
+  <ScalarVariable
+    name="booleanValue.showActive"
+    valueReference="9"
+    variability="discrete"
+    >
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "144" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.delimiter"
+    valueReference="0"
+    description="Column delimiter character for CSV file"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start=","/>
+  </ScalarVariable>
+  <!-- Index of variable = "145" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.fileName"
+    valueReference="1"
+    description="File where matrix is stored"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start="NoName"/>
+  </ScalarVariable>
+  <!-- Index of variable = "146" -->
+  <ScalarVariable
+    name="booleanTable.combiTimeTable.tableName"
+    valueReference="2"
+    description="Table name on file or in function usertab (see docu)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start="NoName"/>
+  </ScalarVariable>
+  <!-- Index of variable = "147" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.delimiter"
+    valueReference="3"
+    description="Column delimiter character for CSV file"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start=","/>
+  </ScalarVariable>
+  <!-- Index of variable = "148" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.fileName"
+    valueReference="4"
+    description="File where matrix is stored"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start="NoName"/>
+  </ScalarVariable>
+  <!-- Index of variable = "149" -->
+  <ScalarVariable
+    name="integerTable.combiTimeTable.tableName"
+    valueReference="5"
+    description="Table name on file or in function usertab (see docu)"
+    variability="fixed"
+    causality="parameter"
+    >
+    <String start="NoName"/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <InitialUnknowns>
+      <Unknown index="6" dependencies="34" dependenciesKind="dependent" />
+      <Unknown index="7" dependencies="35" dependenciesKind="dependent" />
+      <Unknown index="8" dependencies="" dependenciesKind="" />
+      <Unknown index="9" dependencies="" dependenciesKind="" />
+      <Unknown index="10" dependencies="" dependenciesKind="" />
+      <Unknown index="11" dependencies="" dependenciesKind="" />
+      <Unknown index="12" dependencies="36" dependenciesKind="dependent" />
+      <Unknown index="13" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="14" dependencies="36" dependenciesKind="dependent" />
+      <Unknown index="15" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="16" dependencies="37" dependenciesKind="dependent" />
+      <Unknown index="17" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="18" dependencies="38" dependenciesKind="dependent" />
+      <Unknown index="19" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="20" dependencies="39" dependenciesKind="dependent" />
+      <Unknown index="21" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="22" dependencies="40" dependenciesKind="dependent" />
+      <Unknown index="23" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="24" dependencies="41" dependenciesKind="dependent" />
+      <Unknown index="25" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="26" dependencies="42" dependenciesKind="dependent" />
+      <Unknown index="27" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="28" dependencies="43" dependenciesKind="dependent" />
+      <Unknown index="29" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="30" dependencies="44" dependenciesKind="dependent" />
+      <Unknown index="31" dependencies="134" dependenciesKind="dependent" />
+      <Unknown index="32" dependencies="" dependenciesKind="" />
+      <Unknown index="46" dependencies="65" dependenciesKind="dependent" />
+      <Unknown index="47" dependencies="66" dependenciesKind="dependent" />
+      <Unknown index="48" dependencies="" dependenciesKind="" />
+      <Unknown index="49" dependencies="" dependenciesKind="" />
+      <Unknown index="50" dependencies="" dependenciesKind="" />
+      <Unknown index="51" dependencies="" dependenciesKind="" />
+      <Unknown index="52" dependencies="67" dependenciesKind="dependent" />
+      <Unknown index="53" dependencies="68" dependenciesKind="dependent" />
+      <Unknown index="54" dependencies="69" dependenciesKind="dependent" />
+      <Unknown index="55" dependencies="70" dependenciesKind="dependent" />
+      <Unknown index="56" dependencies="71" dependenciesKind="dependent" />
+      <Unknown index="57" dependencies="72" dependenciesKind="dependent" />
+      <Unknown index="58" dependencies="73" dependenciesKind="dependent" />
+      <Unknown index="59" dependencies="74" dependenciesKind="dependent" />
+      <Unknown index="60" dependencies="75" dependenciesKind="dependent" />
+      <Unknown index="61" dependencies="76" dependenciesKind="dependent" />
+      <Unknown index="62" dependencies="77" dependenciesKind="dependent" />
+      <Unknown index="63" dependencies="78" dependenciesKind="dependent" />
+      <Unknown index="64" dependencies="" dependenciesKind="" />
+      <Unknown index="84" dependencies="85" dependenciesKind="dependent" />
+      <Unknown index="100" dependencies="" dependenciesKind="" />
+      <Unknown index="107" dependencies="" dependenciesKind="" />
+      <Unknown index="108" dependencies="" dependenciesKind="" />
+      <Unknown index="110" dependencies="" dependenciesKind="" />
+      <Unknown index="111" dependencies="" dependenciesKind="" />
+      <Unknown index="114" dependencies="" dependenciesKind="" />
+      <Unknown index="115" dependencies="" dependenciesKind="" />
+      <Unknown index="117" dependencies="" dependenciesKind="" />
+      <Unknown index="118" dependencies="" dependenciesKind="" />
+      <Unknown index="131" dependencies="" dependenciesKind="" />
+      <Unknown index="132" dependencies="" dependenciesKind="" />
+      <Unknown index="135" dependencies="" dependenciesKind="" />
+      <Unknown index="136" dependencies="" dependenciesKind="" />
+      <Unknown index="137" dependencies="" dependenciesKind="" />
+      <Unknown index="139" dependencies="" dependenciesKind="" />
+      <Unknown index="140" dependencies="" dependenciesKind="" />
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

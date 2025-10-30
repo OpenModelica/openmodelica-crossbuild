@@ -1,0 +1,10 @@
+# Mark the generated FMU_Interaction1 resources as generated/ignored for diffs
+# - linguist-generated=true: tells GitHub linguist this is generated code
+# - export-ignore: exclude from archive exports
+# - -diff: disable textual diffs for these files
+
+# Match all files under the FMU_Interaction1 directory
+test/resources/FMU_Interaction1/** linguist-generated=true export-ignore -diff
+
+# Also match the directory itself (some tools may reference the directory path)
+test/resources/FMU_Interaction1/ linguist-generated=true export-ignore -diff

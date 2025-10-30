@@ -1,0 +1,5 @@
+resources/*
+!resources/fmi/
+!resources/FMU_Interaction1/
+resources/FMU_Interaction1/binaries/
+resources/FMU_Interaction1/sources/build_*/

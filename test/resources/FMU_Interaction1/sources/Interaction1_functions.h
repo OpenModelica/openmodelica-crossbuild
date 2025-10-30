@@ -1,0 +1,114 @@
+#ifndef Interaction1__H
+#define Interaction1__H
+#include "meta/meta_modelica.h"
+#include "util/modelica.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+
+#include "simulation/simulation_runtime.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+DLLDirection
+void omc_Modelica_Blocks_Examples_Interaction1_booleanTable_isValidTable(threadData_t *threadData, real_array _table);
+DLLDirection
+void boxptr_Modelica_Blocks_Examples_Interaction1_booleanTable_isValidTable(threadData_t *threadData, modelica_metatype _table);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_booleanTable_isValidTable,2,0) {(void*) boxptr_Modelica_Blocks_Examples_Interaction1_booleanTable_isValidTable,0}};
+#define boxvar_Modelica_Blocks_Examples_Interaction1_booleanTable_isValidTable MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_booleanTable_isValidTable)
+
+
+DLLDirection
+void omc_Modelica_Blocks_Examples_Interaction1_integerTable_isValidTable(threadData_t *threadData, real_array _table);
+DLLDirection
+void boxptr_Modelica_Blocks_Examples_Interaction1_integerTable_isValidTable(threadData_t *threadData, modelica_metatype _table);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_integerTable_isValidTable,2,0) {(void*) boxptr_Modelica_Blocks_Examples_Interaction1_integerTable_isValidTable,0}};
+#define boxvar_Modelica_Blocks_Examples_Interaction1_integerTable_isValidTable MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_integerTable_isValidTable)
+
+
+DLLDirection
+void omc_Modelica_Blocks_Examples_Interaction1_start_table_isValidTable(threadData_t *threadData, real_array _table);
+DLLDirection
+void boxptr_Modelica_Blocks_Examples_Interaction1_start_table_isValidTable(threadData_t *threadData, modelica_metatype _table);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_start_table_isValidTable,2,0) {(void*) boxptr_Modelica_Blocks_Examples_Interaction1_start_table_isValidTable,0}};
+#define boxvar_Modelica_Blocks_Examples_Interaction1_start_table_isValidTable MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_start_table_isValidTable)
+
+
+DLLDirection
+void omc_Modelica_Blocks_Examples_Interaction1_stop_table_isValidTable(threadData_t *threadData, real_array _table);
+DLLDirection
+void boxptr_Modelica_Blocks_Examples_Interaction1_stop_table_isValidTable(threadData_t *threadData, modelica_metatype _table);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_stop_table_isValidTable,2,0) {(void*) boxptr_Modelica_Blocks_Examples_Interaction1_stop_table_isValidTable,0}};
+#define boxvar_Modelica_Blocks_Examples_Interaction1_stop_table_isValidTable MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_stop_table_isValidTable)
+
+
+DLLDirection
+modelica_real omc_Modelica_Blocks_Examples_Interaction1_timeTable_getInterpolationCoefficients(threadData_t *threadData, real_array _table, modelica_real _offset, modelica_real _startTimeScaled, modelica_real _timeScaled, modelica_integer _last, modelica_real _TimeEps, modelica_real _shiftTimeScaled, modelica_real *out_b, modelica_real *out_nextEventScaled, modelica_integer *out_next);
+DLLDirection
+modelica_metatype boxptr_Modelica_Blocks_Examples_Interaction1_timeTable_getInterpolationCoefficients(threadData_t *threadData, modelica_metatype _table, modelica_metatype _offset, modelica_metatype _startTimeScaled, modelica_metatype _timeScaled, modelica_metatype _last, modelica_metatype _TimeEps, modelica_metatype _shiftTimeScaled, modelica_metatype *out_b, modelica_metatype *out_nextEventScaled, modelica_metatype *out_next);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_timeTable_getInterpolationCoefficients,2,0) {(void*) boxptr_Modelica_Blocks_Examples_Interaction1_timeTable_getInterpolationCoefficients,0}};
+#define boxvar_Modelica_Blocks_Examples_Interaction1_timeTable_getInterpolationCoefficients MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Examples_Interaction1_timeTable_getInterpolationCoefficients)
+
+
+DLLDirection
+modelica_real omc_Modelica_Blocks_Tables_Internal_getNextTimeEvent(threadData_t *threadData, modelica_complex _tableID, modelica_real _timeIn);
+DLLDirection
+modelica_metatype boxptr_Modelica_Blocks_Tables_Internal_getNextTimeEvent(threadData_t *threadData, modelica_metatype _tableID, modelica_metatype _timeIn);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getNextTimeEvent,2,0) {(void*) boxptr_Modelica_Blocks_Tables_Internal_getNextTimeEvent,0}};
+#define boxvar_Modelica_Blocks_Tables_Internal_getNextTimeEvent MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getNextTimeEvent)
+
+extern double ModelicaStandardTables_CombiTimeTable_nextTimeEvent(void * /*_tableID*/, double /*_timeIn*/);
+
+DLLDirection
+modelica_real omc_Modelica_Blocks_Tables_Internal_getTimeTableTmax(threadData_t *threadData, modelica_complex _tableID);
+DLLDirection
+modelica_metatype boxptr_Modelica_Blocks_Tables_Internal_getTimeTableTmax(threadData_t *threadData, modelica_metatype _tableID);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getTimeTableTmax,2,0) {(void*) boxptr_Modelica_Blocks_Tables_Internal_getTimeTableTmax,0}};
+#define boxvar_Modelica_Blocks_Tables_Internal_getTimeTableTmax MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getTimeTableTmax)
+
+extern double ModelicaStandardTables_CombiTimeTable_maximumTime(void * /*_tableID*/);
+
+DLLDirection
+modelica_real omc_Modelica_Blocks_Tables_Internal_getTimeTableTmin(threadData_t *threadData, modelica_complex _tableID);
+DLLDirection
+modelica_metatype boxptr_Modelica_Blocks_Tables_Internal_getTimeTableTmin(threadData_t *threadData, modelica_metatype _tableID);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getTimeTableTmin,2,0) {(void*) boxptr_Modelica_Blocks_Tables_Internal_getTimeTableTmin,0}};
+#define boxvar_Modelica_Blocks_Tables_Internal_getTimeTableTmin MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getTimeTableTmin)
+
+extern double ModelicaStandardTables_CombiTimeTable_minimumTime(void * /*_tableID*/);
+
+DLLDirection
+modelica_real omc_Modelica_Blocks_Tables_Internal_getTimeTableValueNoDer(threadData_t *threadData, modelica_complex _tableID, modelica_integer _icol, modelica_real _timeIn, modelica_real _nextTimeEvent, modelica_real _pre_nextTimeEvent);
+DLLDirection
+modelica_metatype boxptr_Modelica_Blocks_Tables_Internal_getTimeTableValueNoDer(threadData_t *threadData, modelica_metatype _tableID, modelica_metatype _icol, modelica_metatype _timeIn, modelica_metatype _nextTimeEvent, modelica_metatype _pre_nextTimeEvent);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getTimeTableValueNoDer,2,0) {(void*) boxptr_Modelica_Blocks_Tables_Internal_getTimeTableValueNoDer,0}};
+#define boxvar_Modelica_Blocks_Tables_Internal_getTimeTableValueNoDer MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Tables_Internal_getTimeTableValueNoDer)
+
+extern double ModelicaStandardTables_CombiTimeTable_getValue(void * /*_tableID*/, int /*_icol*/, double /*_timeIn*/, double /*_nextTimeEvent*/, double /*_pre_nextTimeEvent*/);
+
+DLLDirection
+modelica_complex omc_Modelica_Blocks_Types_ExternalCombiTimeTable_constructor(threadData_t *threadData, modelica_string _tableName, modelica_string _fileName, real_array _table, modelica_real _startTime, integer_array _columns, modelica_integer _smoothness, modelica_integer _extrapolation, modelica_real _shiftTime, modelica_integer _timeEvents, modelica_boolean _verboseRead, modelica_string _delimiter, modelica_integer _nHeaderLines);
+DLLDirection
+modelica_metatype boxptr_Modelica_Blocks_Types_ExternalCombiTimeTable_constructor(threadData_t *threadData, modelica_metatype _tableName, modelica_metatype _fileName, modelica_metatype _table, modelica_metatype _startTime, modelica_metatype _columns, modelica_metatype _smoothness, modelica_metatype _extrapolation, modelica_metatype _shiftTime, modelica_metatype _timeEvents, modelica_metatype _verboseRead, modelica_metatype _delimiter, modelica_metatype _nHeaderLines);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Types_ExternalCombiTimeTable_constructor,2,0) {(void*) boxptr_Modelica_Blocks_Types_ExternalCombiTimeTable_constructor,0}};
+#define boxvar_Modelica_Blocks_Types_ExternalCombiTimeTable_constructor MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Types_ExternalCombiTimeTable_constructor)
+
+extern void * ModelicaStandardTables_CombiTimeTable_init3(const char* /*_fileName*/, const char* /*_tableName*/, const double* /*_table*/, size_t, size_t, double /*_startTime*/, const int* /*_columns*/, size_t, int /*_smoothness*/, int /*_extrapolation*/, double /*_shiftTime*/, int /*_timeEvents*/, int /*_verboseRead*/, const char* /*_delimiter*/, int /*_nHeaderLines*/);
+
+DLLDirection
+void omc_Modelica_Blocks_Types_ExternalCombiTimeTable_destructor(threadData_t *threadData, modelica_complex _externalCombiTimeTable);
+DLLDirection
+void boxptr_Modelica_Blocks_Types_ExternalCombiTimeTable_destructor(threadData_t *threadData, modelica_metatype _externalCombiTimeTable);
+static const MMC_DEFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Types_ExternalCombiTimeTable_destructor,2,0) {(void*) boxptr_Modelica_Blocks_Types_ExternalCombiTimeTable_destructor,0}};
+#define boxvar_Modelica_Blocks_Types_ExternalCombiTimeTable_destructor MMC_REFSTRUCTLIT(boxvar_lit_Modelica_Blocks_Types_ExternalCombiTimeTable_destructor)
+
+extern void ModelicaStandardTables_CombiTimeTable_close(void * /*_externalCombiTimeTable*/);
+#include "Interaction1_model.h"
+
+
+#ifdef __cplusplus
+}
+#endif
+#endif

@@ -1,0 +1,147 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  pull_request:
+    branches:
+      - main
+      - 'releases/**'
+
+jobs:
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v5
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          # Use GitHub Container Registry (ghcr) so the image can be pushed from the workflow
+          images: ghcr.io/OpenModelica/crossbuild
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        id: build-image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+    outputs:
+      image: ${{ steps.meta.outputs.tags }}
+
+  test-compile:
+    name: Test Docker image across toolchains
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - toolchain: i686-linux-gnu
+            fmi_platform_tuple: linux32
+            lib_extension: so
+          - toolchain: x86_64-linux-gnu
+            fmi_platform_tuple: linux64
+            lib_extension: so
+          - toolchain: i686-w64-mingw32
+            fmi_platform_tuple: win32
+            lib_extension: dll
+          - toolchain: x86_64-w64-mingw32
+            fmi_platform_tuple: win64
+            lib_extension: dll
+    timeout-minutes: 15
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v5
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull image pushed by build job
+        shell: bash
+        run: |
+          docker pull "${{ needs.build.outputs.image }}"
+
+      - name: Test cross-compilation for matrix toolchain
+        shell: bash
+        env:
+          TOOLCHAIN: ${{ matrix.toolchain }}
+          FMI_PLATFORM_TUPLE: ${{ matrix.fmi_platform_tuple }}
+          LIB_EXTENSION: ${{ matrix.lib_extension }}
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}":/work \
+            -w /work \
+            "${{ needs.build.outputs.image }}" \
+            bash -lc "\
+              cmake -S test/resources/FMU_Interaction1/sources \
+                    -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
+                    -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
+                    -DCMAKE_TOOLCHAIN_FILE=/opt/cmake/toolchain/${TOOLCHAIN}.cmake && \
+              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
+              test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
+              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
+
+      - name: Upload Interaction1.fmu
+        uses: actions/upload-artifact@v5
+        with:
+          name: Interaction1-${{ matrix.toolchain }}
+          path: test/resources/Interaction1.fmu
+          if-no-files-found: error
+
+  test-import:
+    name: Test FMU import across systems
+    needs: test-compile
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            fmu_artifact: Interaction1-x86_64-linux-gnu
+          - os: windows-latest
+            fmu_artifact: Interaction1-x86_64-w64-mingw32
+
+    timeout-minutes: 30
+    steps:
+      - name: Download Interaction1.fmu
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ matrix.fmu_artifact }}
+
+      - name: Install OMSimulator
+        uses: OpenModelica/setup-openmodelica@v1.0
+        with:
+          version: '1'
+          packages: |
+            'omc'
+            'omsimulator'
+
+      - name: Simulate 64-bit Linux FMU
+        if: runner.os == 'Linux'
+        shell: bash
+        run: OMSimulator Interaction1.fmu
+
+      - name: Simulate 64-bit Windows FMU
+        if: runner.os == 'Windows'
+        run: OMSimulator.exe Interaction1.fmu

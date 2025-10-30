@@ -1,0 +1,54 @@
+EXPORTS
+  ;***************************************************
+  ;Common Functions
+  ;****************************************************
+  Interaction1_fmiGetTypesPlatform @1
+  Interaction1_fmiGetVersion @2
+  Interaction1_fmiSetDebugLogging @3
+  Interaction1_fmiInstantiate @4
+  Interaction1_fmiFreeInstance @5
+  Interaction1_fmiSetupExperiment @6
+  Interaction1_fmiEnterInitializationMode @7
+  Interaction1_fmiExitInitializationMode @8
+  Interaction1_fmiTerminate @9
+  Interaction1_fmiReset @10
+  Interaction1_fmiGetReal @11
+  Interaction1_fmiGetInteger @12
+  Interaction1_fmiGetBoolean @13
+  Interaction1_fmiGetString @14
+  Interaction1_fmiSetReal @15
+  Interaction1_fmiSetInteger @16
+  Interaction1_fmiSetBoolean @17
+  Interaction1_fmiSetString @18
+  Interaction1_fmiGetFMUstate @19
+  Interaction1_fmiSetFMUstate @20
+  Interaction1_fmiFreeFMUstate @21
+  Interaction1_fmiSerializedFMUstateSize @22
+  Interaction1_fmiSerializeFMUstate @23
+  Interaction1_fmiDeSerializeFMUstate @24
+  Interaction1_fmiGetDirectionalDerivative @25
+  ;***************************************************
+  ;Functions for FMI for Model Exchange
+  ;****************************************************
+  Interaction1_fmiEnterEventMode @26
+  Interaction1_fmiNewDiscreteStates @27
+  Interaction1_fmiEnterContinuousTimeMode @28
+  Interaction1_fmiCompletedIntegratorStep @29
+  Interaction1_fmiSetTime @30
+  Interaction1_fmiSetContinuousStates @31
+  Interaction1_fmiGetDerivatives @32
+  Interaction1_fmiGetEventIndicators @33
+  Interaction1_fmiGetContinuousStates @34
+  Interaction1_fmiGetNominalsOfContinuousStates @35
+  ;***************************************************
+  ;Functions for FMI for Co-Simulation
+  ;****************************************************
+  Interaction1_fmiSetRealInputDerivatives @36
+  Interaction1_fmiGetRealOutputDerivatives @37
+  Interaction1_fmiDoStep @38
+  Interaction1_fmiCancelStep @39
+  Interaction1_fmiGetStatus @40
+  Interaction1_fmiGetRealStatus @41
+  Interaction1_fmiGetIntegerStatus @42
+  Interaction1_fmiGetBooleanStatus @43
+  Interaction1_fmiGetStringStatus @44
