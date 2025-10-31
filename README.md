@@ -10,7 +10,7 @@ platforms and create multi-platform FMUs.
 
 | Toolchain file                             | OS                    | C                       | Note       |
 |--------------------------------------------|-----------------------|-------------------------|------------|
-| [i686-linux-gnu][i686-linux-gnu]           | x86-64 Linux 32-bit   | gcc -m32                |            |
+| [i686-linux-gnu][i686-linux-gnu]           | x86-64 Linux 32-bit   | i686-linux-gnu-gcc      |            |
 | [x86_64-linux-gnu][x86_64-linux-gnu]       | x86-64 Linux 64-bit   | gcc -m64                |            |
 | [aarch64-linux-gnu][aarch64-linux-gnu]     | AArch64 Linux 64-bit  | aarch64-linux-gnu-gcc   |            |
 | [arm-linux-gnueabi][arm-linux-gnueabi]     | ARM Linux 32-bit      | arm-linux-gnueabi-gcc   |            |

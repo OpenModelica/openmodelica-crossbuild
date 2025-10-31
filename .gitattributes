@@ -8,3 +8,6 @@ test/resources/FMU_Interaction1/** linguist-generated=true export-ignore -diff
 
 # Also match the directory itself (some tools may reference the directory path)
 test/resources/FMU_Interaction1/ linguist-generated=true export-ignore -diff
+
+# Exclude from GitHub language stats
+test/resources/* linguist-vendored
