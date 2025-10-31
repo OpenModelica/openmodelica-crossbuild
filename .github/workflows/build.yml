@@ -68,6 +68,15 @@ jobs:
           - toolchain: x86_64-w64-mingw32
             fmi_platform_tuple: win64
             lib_extension: dll
+          - toolchain: aarch64-linux-gnu
+            fmi_platform_tuple: linux64
+            lib_extension: so
+          - toolchain: arm-linux-gnueabi
+            fmi_platform_tuple: linux32
+            lib_extension: so
+          - toolchain: arm-linux-gnueabihf
+            fmi_platform_tuple: linux32
+            lib_extension: so
     timeout-minutes: 15
     steps:
       - name: Check out the repo

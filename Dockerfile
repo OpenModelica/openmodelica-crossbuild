@@ -29,6 +29,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     g++-multilib \
     gcc \
     gcc-multilib \
+    gcc-aarch64-linux-gnu \
+    g++-aarch64-linux-gnu \
+    gcc-arm-linux-gnueabi \
+    g++-arm-linux-gnueabi \
+    gcc-arm-linux-gnueabihf \
+    g++-arm-linux-gnueabihf \
     git \
     make \
     mingw-w64 \

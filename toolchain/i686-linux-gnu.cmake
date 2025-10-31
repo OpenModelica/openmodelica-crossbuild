@@ -9,10 +9,8 @@ set(CMAKE_CXX_COMPILER g++)
 set(CMAKE_CXX_FLAGS "-m32" CACHE STRING "" FORCE)
 set(CMAKE_EXE_LINKER_FLAGS "-m32" CACHE STRING "" FORCE)
 
-# Root path for cross-compiled libraries
+# Where to find target environment
 set(CMAKE_FIND_ROOT_PATH /usr /usr/lib/i386-linux-gnu)
-
-# Configure search for external dependencies
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)

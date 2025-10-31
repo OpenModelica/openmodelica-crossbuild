@@ -8,12 +8,15 @@ platforms and create multi-platform FMUs.
 
 ## Toolchains
 
-| Toolchain file                           | OS                    | C                      | Note    |
-|------------------------------------------|-----------------------|------------------------|---------|
-| [i686-linux-gnu][i686-linux-gnu]         | x86-64 Linux 32-bit   | gcc -m32               |         |
-| [x86_64-linux-gnu][x86_64-linux-gnu]     | x86-64 Linux 64-bit   | gcc -m64               |         |
-| [i686-w64-mingw32][i686-w64-mingw32]     | x86-64 Windows 32-bit | i686-w64-mingw32-gcc   | MINGW   |
-| [x86_64-w64-mingw32][x86_64-w64-mingw32] | x86-64 Windows 64-bit | x86_64-w64-mingw32-gcc | MINGW   |
+| Toolchain file                             | OS                    | C                       | Note       |
+|--------------------------------------------|-----------------------|-------------------------|------------|
+| [i686-linux-gnu][i686-linux-gnu]           | x86-64 Linux 32-bit   | gcc -m32                |            |
+| [x86_64-linux-gnu][x86_64-linux-gnu]       | x86-64 Linux 64-bit   | gcc -m64                |            |
+| [aarch64-linux-gnu][aarch64-linux-gnu]     | AArch64 Linux 64-bit  | aarch64-linux-gnu-gcc   |            |
+| [arm-linux-gnueabi][arm-linux-gnueabi]     | ARM Linux 32-bit      | arm-linux-gnueabi-gcc   |            |
+| [arm-linux-gnueabihf][arm-linux-gnueabihf] | ARM Linux 32-bit      | arm-linux-gnueabihf-gcc | hard-float |
+| [i686-w64-mingw32][i686-w64-mingw32]       | x86-64 Windows 32-bit | i686-w64-mingw32-gcc    | MINGW      |
+| [x86_64-w64-mingw32][x86_64-w64-mingw32]   | x86-64 Windows 64-bit | x86_64-w64-mingw32-gcc  | MINGW      |
 
 ## Versioning
 
@@ -100,6 +103,9 @@ This repository is part of OpenModelica and licensed with
 [gh-publish-workflow]: https://github.com/OpenModelica/openmodelica-crossbuild/actions/workflows/publish.yml
 [i686-linux-gnu]: ./toolchain/i686-linux-gnu.cmake
 [x86_64-linux-gnu]: ./toolchain/x86_64-linux-gnu.cmake
+[aarch64-linux-gnu]: ./toolchain/aarch64-linux-gnu.cmake
+[arm-linux-gnueabi]: ./toolchain/arm-linux-gnueabi.cmake
+[arm-linux-gnueabihf]: ./toolchain/arm-linux-gnueabihf.cmake
 [i686-w64-mingw32]: ./toolchain/i686-w64-mingw32.cmake
 [x86_64-w64-mingw32]: ./toolchain/x86_64-w64-mingw32.cmake
 [gh-publish-file]: ./.github/workflows/publish.yml
