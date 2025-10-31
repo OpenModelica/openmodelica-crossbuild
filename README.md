@@ -83,7 +83,7 @@ docker push $REGISTRY/crossbuild:$TAG
 
 This repository is part of OpenModelica and licensed with
 `OSMC PUBLIC LICENSE (OSMC-PL) VERSION 1.8`, see
-[test/resources/OSMC-License.txt][osmc-license].
+[./OSMC-License.txt][osmc-license].
 
 [gh-build-badge]: https://github.com/OpenModelica/crossbuild/actions/workflows/build.yml/badge.svg?branch=main
 [gh-build-workflow]: https://github.com/OpenModelica/crossbuild/actions/workflows/build.yml
