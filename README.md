@@ -66,19 +66,9 @@ cmake --build build_linux64 --target create_fmu
 
 ### Release Versions
 
-The [publish.yml][gh-publish-file] workflow will build and
+The [publish.yml][gh-publish-file] workflow will build, sign and
 upload the Docker image to
-[OpenModelica/crossbuild][docker-hub] DockerHub for each release.
-
-To do it manually run:
-
-```bash
-export REGISTRY=openmodelica
-export TAG=v1.26.0
-docker login
-docker image tag crossbuild:$TAG $REGISTRY/crossbuild:$TAG
-docker push $REGISTRY/crossbuild:$TAG
-```
+[GitHub container registry][gh-container-registry] for each release.
 
 ### Development Versions
 
@@ -105,5 +95,4 @@ This repository is part of OpenModelica and licensed with
 [gh-publish-file]: ./.github/workflows/publish.yml
 [gh-build-file]: ./.github/workflows/build.yml
 [gh-container-registry]: https://github.com/OpenModelica/openmodelica-crossbuild/pkgs/container/crossbuild
-[docker-hub]: https://hub.docker.com/repository/docker/OpenModelica/crossbuild
 [osmc-license]: ./OSMC-License.txt
