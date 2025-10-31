@@ -85,10 +85,10 @@ This repository is part of OpenModelica and licensed with
 `OSMC PUBLIC LICENSE (OSMC-PL) VERSION 1.8`, see
 [./OSMC-License.txt][osmc-license].
 
-[gh-build-badge]: https://github.com/OpenModelica/crossbuild/actions/workflows/build.yml/badge.svg?branch=main
-[gh-build-workflow]: https://github.com/OpenModelica/crossbuild/actions/workflows/build.yml
-[gh-publish-badge]: https://github.com/OpenModelica/crossbuild/actions/workflows/publish.yml/badge.svg
-[gh-publish-workflow]: https://github.com/OpenModelica/crossbuild/actions/workflows/publish.yml
+[gh-build-badge]: https://github.com/OpenModelica/openmodelica-crossbuild/actions/workflows/build.yml/badge.svg?branch=main
+[gh-build-workflow]: https://github.com/OpenModelica/openmodelica-crossbuild/actions/workflows/build.yml
+[gh-publish-badge]: https://github.com/OpenModelica/openmodelica-crossbuild/actions/workflows/publish.yml/badge.svg
+[gh-publish-workflow]: https://github.com/OpenModelica/openmodelica-crossbuild/actions/workflows/publish.yml
 [i686-linux-gnu]: ./toolchain/i686-linux-gnu.cmake
 [x86_64-linux-gnu]: ./toolchain/x86_64-linux-gnu.cmake
 [i686-w64-mingw32]: ./toolchain/i686-w64-mingw32.cmake

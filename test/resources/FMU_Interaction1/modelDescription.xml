@@ -2,11 +2,11 @@
 <fmiModelDescription
   fmiVersion="2.0"
   modelName="Modelica.Blocks.Examples.Interaction1"
-  guid="{36b02634-9d23-4704-8d3f-d050bea2b3db}"
+  guid="{e8423ae4-f60a-499d-a4d3-970bf40a172c}"
   description="Demonstrates the usage of blocks from Modelica.Blocks.Interaction.Show"
   version=""
   generationTool="OpenModelica Compiler v1.26.0-dev-426-g7fcb459d2c-cmake"
-  generationDateAndTime="2025-10-31T10:30:07Z"
+  generationDateAndTime="2025-10-30T15:19:25Z"
   variableNamingConvention="structured"
   numberOfEventIndicators="13">
   <ModelExchange
