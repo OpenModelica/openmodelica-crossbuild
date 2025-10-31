@@ -120,25 +120,27 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Linux 64-bit host, 32-bit FMU
+          # Linux 64-bit runner
           - os: linux-latest
-            fmu_artifact: Interaction1-i686-linux-gnu
-          # Linux 64-bit host, 64-bit FMU
-          - os: linux-latest
-            fmu_artifact: Interaction1-x86_64-linux-gnu
-          # Windows 64-bit host, 32-bit FMU
+            fmu_artifact: [Interaction1-i686-linux-gnu, Interaction1-x86_64-linux-gnu]
+          # Windows 64-bit runner
           - os: windows-latest
-            fmu_artifact: Interaction1-i686-w64-mingw32
-          # Windows 64-bit host, 64-bit FMU
-          - os: windows-latest
-            fmu_artifact: Interaction1-x86_64-w64-mingw32
+            fmu_artifact: [Interaction1-i686-w64-mingw32, Interaction1-x86_64-w64-mingw32]
+
 
     timeout-minutes: 30
     steps:
-      - name: Download Interaction1.fmu
+      - name: Download 32-bit Interaction1.fmu
         uses: actions/download-artifact@v5
         with:
-          name: ${{ matrix.fmu_artifact }}
+          name: ${{ matrix.fmu_artifact[0] }}
+          path: 32bit
+
+      - name: Download 64-bit Interaction1.fmu
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ matrix.fmu_artifact[1] }}
+          path: 64bit
 
       - name: Install OMSimulator
         uses: OpenModelica/setup-openmodelica@v1.0
@@ -147,12 +149,20 @@ jobs:
           packages: |
             'omsimulator'
 
-      - name: Simulate FMU on Linux
+      - name: Simulate 32-bit Linux FMU
         if: runner.os == 'Linux'
         shell: bash
-        run: OMSimulator Interaction1.fmu
+        run: cd 32bit && OMSimulator Interaction1.fmu
 
-      - name: Simulate FMU on Windows
-        if: runner.os == 'Windows'
+      - name: Simulate 64-bit Linux FMU
+        if: runner.os == 'Linux'
         shell: bash
-        run: OMSimulator.exe Interaction1.fmu
+        run: cd 64bit && OMSimulator Interaction1.fmu
+
+      - name: Simulate 32-bit Windows FMU
+        if: runner.os == 'Windows'
+        run: cd 32bit && OMSimulator.exe Interaction1.fmu
+
+      - name: Simulate 64-bit Windows FMU
+        if: runner.os == 'Windows'
+        run: cd 64bit && OMSimulator.exe Interaction1.fmu
