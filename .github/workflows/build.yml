@@ -68,7 +68,7 @@ jobs:
           - toolchain: x86_64-w64-mingw32
             fmi_platform_tuple: win64
             lib_extension: dll
-    timeout-minutes: 60
+    timeout-minutes: 15
     steps:
       - name: Check out the repo
         uses: actions/checkout@v5
@@ -111,3 +111,48 @@ jobs:
           name: Interaction1-${{ matrix.toolchain }}
           path: test/resources/Interaction1.fmu
           if-no-files-found: error
+
+  test-import:
+    name: Test FMU import across systems
+    needs: test-compile
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Linux 64-bit host, 32-bit FMU
+          - os: linux-latest
+            fmu_artifact: Interaction1-i686-linux-gnu
+          # Linux 64-bit host, 64-bit FMU
+          - os: linux-latest
+            fmu_artifact: Interaction1-x86_64-linux-gnu
+          # Windows 64-bit host, 32-bit FMU
+          - os: windows-latest
+            fmu_artifact: Interaction1-i686-w64-mingw32
+          # Windows 64-bit host, 64-bit FMU
+          - os: windows-latest
+            fmu_artifact: Interaction1-x86_64-w64-mingw32
+
+    timeout-minutes: 30
+    steps:
+      - name: Download Interaction1.fmu
+        uses: actions/download-artifact@v5
+        with:
+          name: Interaction1-${{ matrix.fmu_artifact }}
+
+      - name: Install OMSimulator
+        uses: OpenModelica/setup-openmodelica@v1.0
+        with:
+          version: '1'
+          packages: |
+            'omsimulator'
+
+      - name: Simulate FMU on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: OMSimulator Interaction1.fmu
+
+      - name: Simulate FMU on Windows
+        if: runner.os == 'Windows'
+        shell: bash
+        run: OMSimulator.exe Interaction1.fmu
