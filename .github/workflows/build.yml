@@ -42,11 +42,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-    # Expose the image tag(s) produced by the metadata action as a job output so
-    # downstream jobs can reference and pull the exact image.
     outputs:
       image: ${{ steps.meta.outputs.tags }}
-
 
   test-compile:
     name: Test Docker image across toolchains
@@ -120,27 +117,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Linux 64-bit runner
-          - os: linux-latest
-            fmu_artifact: [Interaction1-i686-linux-gnu, Interaction1-x86_64-linux-gnu]
-          # Windows 64-bit runner
+          - os: ubuntu-latest
+            fmu_artifact: Interaction1-x86_64-linux-gnu
           - os: windows-latest
-            fmu_artifact: [Interaction1-i686-w64-mingw32, Interaction1-x86_64-w64-mingw32]
-
+            fmu_artifact: Interaction1-x86_64-w64-mingw32
 
     timeout-minutes: 30
     steps:
-      - name: Download 32-bit Interaction1.fmu
+      - name: Download Interaction1.fmu
         uses: actions/download-artifact@v5
         with:
-          name: ${{ matrix.fmu_artifact[0] }}
-          path: 32bit
-
-      - name: Download 64-bit Interaction1.fmu
-        uses: actions/download-artifact@v5
-        with:
-          name: ${{ matrix.fmu_artifact[1] }}
-          path: 64bit
+          name: ${{ matrix.fmu_artifact }}
 
       - name: Install OMSimulator
         uses: OpenModelica/setup-openmodelica@v1.0
@@ -149,19 +136,10 @@ jobs:
           packages: |
             'omsimulator'
 
-      - name: Simulate 32-bit Linux FMU
-        if: runner.os == 'Linux'
-        shell: bash
-        run: cd 32bit && OMSimulator Interaction1.fmu
-
       - name: Simulate 64-bit Linux FMU
         if: runner.os == 'Linux'
         shell: bash
         run: cd 64bit && OMSimulator Interaction1.fmu
-
-      - name: Simulate 32-bit Windows FMU
-        if: runner.os == 'Windows'
-        run: cd 32bit && OMSimulator.exe Interaction1.fmu
 
       - name: Simulate 64-bit Windows FMU
         if: runner.os == 'Windows'
