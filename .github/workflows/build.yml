@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - 'releases/**'
+    tags:
+      - v*
   pull_request:
     branches:
       - main
@@ -39,8 +41,9 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: true
           tags: ${{ steps.meta.outputs.tags }}
+          annotations: ${{ steps.meta.outputs.annotations }}
+          push: true
 
     outputs:
       image: ${{ steps.meta.outputs.tags }}
