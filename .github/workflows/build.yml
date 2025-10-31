@@ -134,13 +134,14 @@ jobs:
         with:
           version: '1'
           packages: |
+            'omc'
             'omsimulator'
 
       - name: Simulate 64-bit Linux FMU
         if: runner.os == 'Linux'
         shell: bash
-        run: cd 64bit && OMSimulator Interaction1.fmu
+        run: OMSimulator Interaction1.fmu
 
       - name: Simulate 64-bit Windows FMU
         if: runner.os == 'Windows'
-        run: cd 64bit && OMSimulator.exe Interaction1.fmu
+        run: OMSimulator.exe Interaction1.fmu
