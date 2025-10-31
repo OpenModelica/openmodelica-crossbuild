@@ -55,7 +55,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        toolchain: ["i686-linux-gnu", "i686-w64-mingw32", "x86_64-linux-gnu", "x86_64-w64-mingw32"]
+        include:
+          - toolchain: i686-linux-gnu
+            fmi_platform_tuple: linux32
+            lib_extension: so
+          - toolchain: x86_64-linux-gnu
+            fmi_platform_tuple: linux64
+            lib_extension: so
+          - toolchain: i686-w64-mingw32
+            fmi_platform_tuple: win32
+            lib_extension: dll
+          - toolchain: x86_64-w64-mingw32
+            fmi_platform_tuple: win64
+            lib_extension: dll
     timeout-minutes: 60
     steps:
       - name: Check out the repo
@@ -77,19 +89,25 @@ jobs:
         shell: bash
         env:
           TOOLCHAIN: ${{ matrix.toolchain }}
+          FMI_PLATFORM_TUPLE: ${{ matrix.fmi_platform_tuple }}
+          LIB_EXTENSION: ${{ matrix.lib_extension }}
         run: |
-          # Strip potential .cmake suffix and construct toolchain file path inside container
-          TOOLCHAIN_BASE="${TOOLCHAIN%%.cmake}"
-          TOOLCHAIN_FILE="/work/toolchain/${TOOLCHAIN_BASE}.cmake"
-
           docker run --rm \
             -v "${{ github.workspace }}":/work \
             -w /work \
             "${{ needs.build.outputs.image }}" \
             bash -lc "\
               cmake -S test/resources/FMU_Interaction1/sources \
-                    -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN_BASE} \
+                    -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
                     -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
-                    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} && \
-              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN_BASE} --target install && \
-              test -f test/resources/FMU_Interaction1/binaries/linux64/Interaction1.so"
+                    -DCMAKE_TOOLCHAIN_FILE=/opt/cmake/toolchain/${TOOLCHAIN}.cmake && \
+              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
+              test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
+              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
+
+      - name: Upload Interaction1.fmu
+        uses: actions/upload-artifact@v5
+        with:
+          name: Interaction1-${{ matrix.toolchain }}
+          path: test/resources/Interaction1.fmu
+          if-no-files-found: error

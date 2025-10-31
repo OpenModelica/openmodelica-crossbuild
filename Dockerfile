@@ -23,5 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make \
     mingw-w64 \
     pkg-config \
+    tar \
     unzip \
+    zip \
     && rm -rf /var/lib/apt/lists/*

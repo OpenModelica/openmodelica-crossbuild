@@ -20,4 +20,4 @@ buildModelFMU(Modelica.Blocks.Examples.Interaction1
 getErrorString();
 
 system("unzip -qq Interaction1.fmu -d FMU_Interaction1"); getErrorString();
-system("rm -r Interaction1* FMU_Interaction1/binaries/ FMU_Interaction1/documentation/ FMU_Interaction1/resources/"); getErrorString();
+system("rm -r Interaction1* FMU_Interaction1/binaries/"); getErrorString();

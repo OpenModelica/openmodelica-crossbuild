@@ -81,10 +81,8 @@ docker push $REGISTRY/crossbuild:$TAG
 
 ## License
 
-The Dockerfile is licensed withthe MIT License, see
-[LICENSE.md][license].
-The C test files in test/resources are part of OpenModelica and licensed with
-PUBLIC LICENSE (OSMC-PL) VERSION 1.8, see
+This repository is part of OpenModelica and licensed with
+`OSMC PUBLIC LICENSE (OSMC-PL) VERSION 1.8`, see
 [test/resources/OSMC-License.txt][osmc-license].
 
 [gh-build-badge]: https://github.com/OpenModelica/crossbuild/actions/workflows/build.yml/badge.svg?branch=main
@@ -97,5 +95,4 @@ PUBLIC LICENSE (OSMC-PL) VERSION 1.8, see
 [x86_64-w64-mingw32]: ./toolchain/x86_64-w64-mingw32.cmake
 [gh-publish-file]: ./.github/workflows/publish.yml
 [docker-hub]: https://hub.docker.com/repository/docker/OpenModelica/crossbuild
-[license]: ./LICENSE.md
-[osmc-license]: ./test/resources/OSMC-License.txt
+[osmc-license]: ./OSMC-License.txt

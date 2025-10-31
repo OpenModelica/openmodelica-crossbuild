@@ -3,4 +3,3 @@ resources/*
 !resources/FMU_Interaction1/
 resources/FMU_Interaction1/binaries/
 resources/FMU_Interaction1/sources/build_*/
-!resources/OSMC-License.txt

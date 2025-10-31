@@ -184,14 +184,13 @@ find_library(zlib
              NAMES zlib
              PATHS ${EXTERNAL_LIBDIRECTORIES} NO_DEFAULT_PATH)
 if(NOT ${zlib})
-  message(WARNING "Could not find library ")
-  message(STATUS "zlib is refered by ModelicaMatIO, but not used by default. Try compiling without linking.")
+  message(WARNING "Failed to find library")
+  message(NOTICE "zlib is referred by ModelicaMatIO, but not used by default. Try compiling without linking.")
 else()
   message(STATUS "Linking ${zlib}")
   target_link_libraries(${FMU_NAME_HASH} PRIVATE ${zlib})
   list(APPEND RUNTIME_DEPENDS ${zlib})
 endif()
-
 
 if(${NEED_CVODE})
   # Force static compilation on Windows or if CMake is too old
