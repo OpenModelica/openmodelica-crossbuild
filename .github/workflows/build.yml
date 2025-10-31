@@ -138,7 +138,7 @@ jobs:
       - name: Download Interaction1.fmu
         uses: actions/download-artifact@v5
         with:
-          name: Interaction1-${{ matrix.fmu_artifact }}
+          name: ${{ matrix.fmu_artifact }}
 
       - name: Install OMSimulator
         uses: OpenModelica/setup-openmodelica@v1.0
