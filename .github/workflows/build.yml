@@ -138,6 +138,7 @@ jobs:
               -w /work \
               "$img" \
               bash -lc "\
+                rm -rf test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} &&\
                 cmake -S test/resources/FMU_Interaction1/sources \
                       -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
                       -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
