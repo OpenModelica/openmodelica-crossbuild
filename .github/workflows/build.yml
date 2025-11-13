@@ -108,9 +108,10 @@ jobs:
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          for img in ${{ needs.build.outputs.image }}; do
+          IMAGES="${{ needs.build.outputs.image }}"
+          while read -r img; do
             docker pull "$img"
-          done
+          done <<< "$IMAGES"
 
       - name: Download and load image artifact for pull_request runs
         if: github.event_name == 'pull_request'
@@ -131,12 +132,13 @@ jobs:
           LIB_EXTENSION: ${{ matrix.lib_extension }}
         run: |
           IMAGES="${{ needs.build.outputs.image }}"
-          for img in $IMAGES; do
+          while read -r img; do
             docker run --rm \
               -v "${{ github.workspace }}":/work \
               -w /work \
               "$img" \
               bash -lc "\
+                rm -rf test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} &&\
                 cmake -S test/resources/FMU_Interaction1/sources \
                       -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
                       -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
@@ -144,7 +146,7 @@ jobs:
                 cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
                 test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
                 cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
-          done
+          done <<< "$IMAGES"
 
       - name: Upload Interaction1.fmu
         uses: actions/upload-artifact@v5
