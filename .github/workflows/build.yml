@@ -25,8 +25,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # Use GitHub Container Registry (ghcr) so the image can be pushed from the workflow
-          images: ghcr.io/OpenModelica/crossbuild
+          images: ghcr.io/openmodelica/crossbuild
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
@@ -43,7 +42,23 @@ jobs:
           file: ./Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           annotations: ${{ steps.meta.outputs.annotations }}
-          push: true
+          # Only push when this is NOT a pull_request (avoid GHCR write for PRs)
+          push: ${{ github.event_name != 'pull_request' }}
+
+      - name: Save image as tar for pull_request runs
+        if: github.event_name == 'pull_request'
+        run: |
+          # pick first tag from metadata (comma separated)
+          img="${{ steps.meta.outputs.tags }}"
+          img="${img%%,*}"
+          docker save -o crossbuild-image.tar "$img"
+
+      - name: Upload image artifact for pull_request runs
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v5
+        with:
+          name: crossbuild-image
+          path: crossbuild-image.tar
 
     outputs:
       image: ${{ steps.meta.outputs.tags }}
@@ -90,9 +105,23 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull image pushed by build job
+        if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          docker pull "${{ needs.build.outputs.image }}"
+          for img in ${{ needs.build.outputs.image }}; do
+            docker pull "$img"
+          done
+
+      - name: Download and load image artifact for pull_request runs
+        if: github.event_name == 'pull_request'
+        uses: actions/download-artifact@v6
+        with:
+          name: crossbuild-image
+          path: ./image
+
+      - name: Load image for pull_request runs
+        if: github.event_name == 'pull_request'
+        run: docker load -i ./image/crossbuild-image.tar
 
       - name: Test cross-compilation for matrix toolchain
         shell: bash
@@ -101,18 +130,21 @@ jobs:
           FMI_PLATFORM_TUPLE: ${{ matrix.fmi_platform_tuple }}
           LIB_EXTENSION: ${{ matrix.lib_extension }}
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}":/work \
-            -w /work \
-            "${{ needs.build.outputs.image }}" \
-            bash -lc "\
-              cmake -S test/resources/FMU_Interaction1/sources \
-                    -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
-                    -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
-                    -DCMAKE_TOOLCHAIN_FILE=/opt/cmake/toolchain/${TOOLCHAIN}.cmake && \
-              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
-              test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
-              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
+          IMAGES="${{ needs.build.outputs.image }}"
+          for img in $IMAGES; do
+            docker run --rm \
+              -v "${{ github.workspace }}":/work \
+              -w /work \
+              "$img" \
+              bash -lc "\
+                cmake -S test/resources/FMU_Interaction1/sources \
+                      -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
+                      -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
+                      -DCMAKE_TOOLCHAIN_FILE=/opt/cmake/toolchain/${TOOLCHAIN}.cmake && \
+                cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
+                test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
+                cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
+          done
 
       - name: Upload Interaction1.fmu
         uses: actions/upload-artifact@v5
@@ -137,7 +169,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Download Interaction1.fmu
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ matrix.fmu_artifact }}
 
