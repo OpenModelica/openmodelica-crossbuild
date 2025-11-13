@@ -109,9 +109,9 @@ jobs:
         shell: bash
         run: |
           IMAGES="${{ needs.build.outputs.image }}"
-          for img in $IMAGES; do
+          while read -r img; do
             docker pull "$img"
-          done
+          done <<< "$IMAGES"
 
       - name: Download and load image artifact for pull_request runs
         if: github.event_name == 'pull_request'
@@ -132,7 +132,7 @@ jobs:
           LIB_EXTENSION: ${{ matrix.lib_extension }}
         run: |
           IMAGES="${{ needs.build.outputs.image }}"
-          for img in $IMAGES; do
+          while read -r img; do
             docker run --rm \
               -v "${{ github.workspace }}":/work \
               -w /work \
@@ -145,7 +145,7 @@ jobs:
                 cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
                 test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
                 cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
-          done
+          done <<< "$IMAGES"
 
       - name: Upload Interaction1.fmu
         uses: actions/upload-artifact@v5
