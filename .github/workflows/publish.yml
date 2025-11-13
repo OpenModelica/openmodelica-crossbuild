@@ -35,7 +35,6 @@ jobs:
         uses: docker/metadata-action@v5.8.0
         with:
           images: ghcr.io/openmodelica/crossbuild
-          tags: type=ref,event=release
 
       - name: Build and push Docker image
         id: build-and-push
