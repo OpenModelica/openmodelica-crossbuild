@@ -52,19 +52,36 @@ jobs:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
           TAGS: ${{ steps.meta.outputs.tags }}
         run: |
+          set -euo pipefail
+          [ -n "${DIGEST:-}" ] || { echo "No digest found"; exit 1; }
           images=""
-          for tag in ${TAGS}; do
+          while IFS= read -r tag; do
+            tag="$(echo "$tag" | xargs)"   # trim whitespace
+            [ -z "$tag" ] && continue
             images+="${tag}@${DIGEST} "
-          done
-          cosign sign --yes ${images}
+          done < <(echo "${TAGS:-}" | tr ',' '\n')
+          echo "Signing: $images"
+          cosign sign --yes $images
 
       - name: Verify signatures
         env:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
           TAGS: ${{ steps.meta.outputs.tags }}
         run: |
+          set -euo pipefail
+          [ -n "${DIGEST:-}" ] || { echo "No digest found"; exit 1; }
           images=""
-          for tag in ${TAGS}; do
+          while IFS= read -r tag; do
+            tag="$(echo "$tag" | xargs)"
+            [ -z "$tag" ] && continue
             images+="${tag}@${DIGEST} "
-          done
-          cosign verify ${images}
+          done < <(echo "${TAGS:-}" | tr ',' '\n')
+
+          CERT_ID="https://github.com/${{ github.repository }}/.github/workflows/publish.yml@${{ github.ref }}"
+          CERT_ISSUER="https://token.actions.githubusercontent.com"
+
+          echo "Verifying: $images"
+          cosign verify \
+            --certificate-identity="${CERT_ID}" \
+            --certificate-oidc-issuer="${CERT_ISSUER}" \
+            $images

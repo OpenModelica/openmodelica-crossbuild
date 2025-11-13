@@ -78,8 +78,20 @@ upload the Docker image to
 The [build.yml][gh-build-file] workflow uploads all tested image versions to
 [GitHub container registry][gh-container-registry].
 
+## Verifying Signature
+
 > [!CAUTION]
 > Only download and run images you trust.
+
+You can use `cosign` to verify the keyless signature from
+[publish.yml][gh-publish-file]:
+
+```bash
+export TAG=v1.26.0
+cosign verify ghcr.io/openmodelica/crossbuild \
+       --certificate-identity=https://github.com/OpenModelica/openmodelica-crossbuild/.github/workflows/publish.yml@refs/tags/$TAG \
+       --certificate-oidc-issuer=https://token.actions.githubusercontent.com
+```
 
 ## License
 
