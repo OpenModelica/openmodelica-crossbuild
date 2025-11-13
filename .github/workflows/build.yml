@@ -26,7 +26,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           # Use GitHub Container Registry (ghcr) so the image can be pushed from the workflow
-          images: ghcr.io/OpenModelica/crossbuild
+          images: ghcr.io/openmodelica/crossbuild
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
@@ -92,7 +92,9 @@ jobs:
       - name: Pull image pushed by build job
         shell: bash
         run: |
-          docker pull "${{ needs.build.outputs.image }}"
+          for img in ${{ needs.build.outputs.image }}; do
+            docker pull "$img"
+          done
 
       - name: Test cross-compilation for matrix toolchain
         shell: bash
@@ -101,18 +103,20 @@ jobs:
           FMI_PLATFORM_TUPLE: ${{ matrix.fmi_platform_tuple }}
           LIB_EXTENSION: ${{ matrix.lib_extension }}
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}":/work \
-            -w /work \
-            "${{ needs.build.outputs.image }}" \
-            bash -lc "\
-              cmake -S test/resources/FMU_Interaction1/sources \
-                    -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
-                    -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
-                    -DCMAKE_TOOLCHAIN_FILE=/opt/cmake/toolchain/${TOOLCHAIN}.cmake && \
-              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
-              test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
-              cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
+          for img in $img; do
+            docker run --rm \
+              -v "${{ github.workspace }}":/work \
+              -w /work \
+              "$img" \
+              bash -lc "\
+                cmake -S test/resources/FMU_Interaction1/sources \
+                      -B test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} \
+                      -DFMI_INTERFACE_HEADER_FILES_DIRECTORY=/work/test/resources/fmi \
+                      -DCMAKE_TOOLCHAIN_FILE=/opt/cmake/toolchain/${TOOLCHAIN}.cmake && \
+                cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target install && \
+                test -f test/resources/FMU_Interaction1/binaries/${FMI_PLATFORM_TUPLE}/Interaction1.${LIB_EXTENSION} && \
+                cmake --build test/resources/FMU_Interaction1/sources/build_${TOOLCHAIN} --target create_fmu"
+          done
 
       - name: Upload Interaction1.fmu
         uses: actions/upload-artifact@v5
