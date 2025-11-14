@@ -88,7 +88,7 @@ You can use `cosign` to verify the keyless signature from
 
 ```bash
 export TAG=v1.26.0
-cosign verify ghcr.io/openmodelica/crossbuild \
+cosign verify ghcr.io/openmodelica/crossbuild:$TAG \
        --certificate-identity=https://github.com/OpenModelica/openmodelica-crossbuild/.github/workflows/publish.yml@refs/tags/$TAG \
        --certificate-oidc-issuer=https://token.actions.githubusercontent.com
 ```
