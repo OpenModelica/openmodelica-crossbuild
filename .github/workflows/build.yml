@@ -55,7 +55,7 @@ jobs:
 
       - name: Upload image artifact for pull_request runs
         if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: crossbuild-image
           path: crossbuild-image.tar
@@ -149,7 +149,7 @@ jobs:
           done <<< "$IMAGES"
 
       - name: Upload Interaction1.fmu
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: Interaction1-${{ matrix.toolchain }}
           path: test/resources/Interaction1.fmu
