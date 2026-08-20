@@ -69,14 +69,23 @@ cmake --build build_linux64 --target create_fmu
 
 ### Release Versions
 
-The [publish.yml][gh-publish-file] workflow will build, sign and
-upload the Docker image to
-[GitHub container registry][gh-container-registry] for each release.
+The [publish.yml][gh-publish-file] workflow builds, uploads and **signs** the
+Docker image in the [GitHub container registry][gh-container-registry] for every
+pushed `v*` Git tag. It publishes the tag itself (e.g. `v1.27.0`) as well as
+`latest`. Creating a GitHub release from a new tag pushes that tag too, so
+releases are covered by the same workflow. To (re-)publish an already existing
+tag, run [publish.yml][gh-publish-workflow] via *Run workflow* and select the
+tag.
+
+Release tags are published exclusively by this workflow, so that no unsigned
+image can end up under a `v*` or `latest` tag.
 
 ### Development Versions
 
-The [build.yml][gh-build-file] workflow uploads all tested image versions to
-[GitHub container registry][gh-container-registry].
+The [build.yml][gh-build-file] workflow uploads all tested image versions of the
+`main` and `releases/**` branches to the
+[GitHub container registry][gh-container-registry]. These images are tagged with
+their branch name (e.g. `main`) and are **not signed**.
 
 ## Verifying Signature
 
@@ -84,10 +93,11 @@ The [build.yml][gh-build-file] workflow uploads all tested image versions to
 > Only download and run images you trust.
 
 You can use `cosign` to verify the keyless signature from
-[publish.yml][gh-publish-file]:
+[publish.yml][gh-publish-file]. Only `v*` release tags and `latest` are signed;
+branch images such as `main` are not.
 
 ```bash
-export TAG=v1.26.0
+export TAG=v1.27.0
 cosign verify ghcr.io/openmodelica/crossbuild:$TAG \
        --certificate-identity=https://github.com/OpenModelica/openmodelica-crossbuild/.github/workflows/publish.yml@refs/tags/$TAG \
        --certificate-oidc-issuer=https://token.actions.githubusercontent.com
