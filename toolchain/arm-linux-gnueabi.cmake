@@ -11,3 +11,5 @@ set(CMAKE_FIND_ROOT_PATH /usr /usr/arm-linux-gnueabi)
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+set(OM_RUST_TARGET_TRIPLE armv5te-unknown-linux-gnueabi CACHE STRING "Rust target triple")

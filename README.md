@@ -8,15 +8,20 @@ platforms and create multi-platform FMUs.
 
 ## Toolchains
 
-| Toolchain file                             | OS                    | C                       | Note       |
-|--------------------------------------------|-----------------------|-------------------------|------------|
-| [i686-linux-gnu][i686-linux-gnu]           | x86-64 Linux 32-bit   | i686-linux-gnu-gcc      |            |
-| [x86_64-linux-gnu][x86_64-linux-gnu]       | x86-64 Linux 64-bit   | gcc -m64                |            |
-| [aarch64-linux-gnu][aarch64-linux-gnu]     | AArch64 Linux 64-bit  | aarch64-linux-gnu-gcc   |            |
-| [arm-linux-gnueabi][arm-linux-gnueabi]     | ARM Linux 32-bit      | arm-linux-gnueabi-gcc   |            |
-| [arm-linux-gnueabihf][arm-linux-gnueabihf] | ARM Linux 32-bit      | arm-linux-gnueabihf-gcc | hard-float |
-| [i686-w64-mingw32][i686-w64-mingw32]       | x86-64 Windows 32-bit | i686-w64-mingw32-gcc    | MINGW      |
-| [x86_64-w64-mingw32][x86_64-w64-mingw32]   | x86-64 Windows 64-bit | x86_64-w64-mingw32-gcc  | MINGW      |
+| Toolchain file                             | OS                    | C                       | Rust                          | Note       |
+|--------------------------------------------|-----------------------|-------------------------|-------------------------------|------------|
+| [i686-linux-gnu][i686-linux-gnu]           | x86-64 Linux 32-bit   | i686-linux-gnu-gcc      | i686-unknown-linux-gnu        |            |
+| [x86_64-linux-gnu][x86_64-linux-gnu]       | x86-64 Linux 64-bit   | gcc -m64                | x86_64-unknown-linux-gnu      |            |
+| [aarch64-linux-gnu][aarch64-linux-gnu]     | AArch64 Linux 64-bit  | aarch64-linux-gnu-gcc   | aarch64-unknown-linux-gnu     |            |
+| [arm-linux-gnueabi][arm-linux-gnueabi]     | ARM Linux 32-bit      | arm-linux-gnueabi-gcc   | armv5te-unknown-linux-gnueabi |            |
+| [arm-linux-gnueabihf][arm-linux-gnueabihf] | ARM Linux 32-bit      | arm-linux-gnueabihf-gcc | armv7-unknown-linux-gnueabihf | hard-float |
+| [i686-w64-mingw32][i686-w64-mingw32]       | x86-64 Windows 32-bit | i686-w64-mingw32-gcc    | i686-pc-windows-gnu           | MINGW      |
+| [x86_64-w64-mingw32][x86_64-w64-mingw32]   | x86-64 Windows 64-bit | x86_64-w64-mingw32-gcc  | x86_64-pc-windows-gnu         | MINGW      |
+
+The image ships a stable Rust toolchain with these targets, since the FMUs of
+OpenModelica 1.28.0 and later link a Rust simulation runtime. Each toolchain
+file sets `OM_RUST_TARGET_TRIPLE`, which the FMU's CMake passes on to
+`cargo --target`, and the image sets the matching `CARGO_TARGET_<triple>_LINKER`.
 
 ## Versioning
 
@@ -27,7 +32,7 @@ OpenModelica. So OpenModelica `v1.26.0` expects to use this image with tag
 ## Build
 
 ```bash
-export TAG=v1.26.0
+export TAG=v1.28.0
 docker build --pull --no-cache --tag crossbuild:$TAG .
 ```
 
@@ -97,7 +102,7 @@ You can use `cosign` to verify the keyless signature from
 branch images such as `main` are not.
 
 ```bash
-export TAG=v1.27.0
+export TAG=v1.28.0
 cosign verify ghcr.io/openmodelica/crossbuild:$TAG \
        --certificate-identity=https://github.com/OpenModelica/openmodelica-crossbuild/.github/workflows/publish.yml@refs/tags/$TAG \
        --certificate-oidc-issuer=https://token.actions.githubusercontent.com
