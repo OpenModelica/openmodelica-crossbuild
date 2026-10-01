@@ -34,7 +34,7 @@ jobs:
 
       - name: Build and push Docker image
         id: build-image
-        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           file: ./Dockerfile
@@ -175,7 +175,7 @@ jobs:
           name: ${{ matrix.fmu_artifact }}
 
       - name: Install OMSimulator
-        uses: OpenModelica/setup-openmodelica@dd6dc5fdb91c936dd3ab328902808c8a5421f146 # v1.1.0
+        uses: OpenModelica/setup-openmodelica@419f31141aa79a22f7033def5626047dd3bb5069 # v1.2.0
         with:
           version: '1'
           packages: |
