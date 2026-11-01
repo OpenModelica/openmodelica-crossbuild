@@ -26,7 +26,7 @@ jobs:
           images: ghcr.io/openmodelica/crossbuild
 
       - name: Log in to GitHub Container Registry
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -34,7 +34,7 @@ jobs:
 
       - name: Build and push Docker image
         id: build-image
-        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           file: ./Dockerfile
@@ -54,7 +54,7 @@ jobs:
 
       - name: Upload image artifact for pull_request runs
         if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: crossbuild-image
           path: crossbuild-image.tar
@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Log in to GitHub Container Registry
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -114,7 +114,7 @@ jobs:
 
       - name: Download and load image artifact for pull_request runs
         if: github.event_name == 'pull_request'
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: crossbuild-image
           path: ./image
@@ -148,7 +148,7 @@ jobs:
           done <<< "$IMAGES"
 
       - name: Upload Interaction1.fmu
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: Interaction1-${{ matrix.toolchain }}
           path: test/resources/Interaction1.fmu
@@ -170,12 +170,12 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Download Interaction1.fmu
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: ${{ matrix.fmu_artifact }}
 
       - name: Install OMSimulator
-        uses: OpenModelica/setup-openmodelica@dd6dc5fdb91c936dd3ab328902808c8a5421f146 # v1.1.0
+        uses: OpenModelica/setup-openmodelica@419f31141aa79a22f7033def5626047dd3bb5069 # v1.2.0
         with:
           version: '1'
           packages: |
