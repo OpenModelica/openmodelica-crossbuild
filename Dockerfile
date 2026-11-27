@@ -44,9 +44,9 @@ RUN apt-get update && \
 ENV RUSTUP_HOME=/opt/rust/rustup \
     CARGO_HOME=/opt/rust/cargo \
     PATH=/opt/rust/cargo/bin:$PATH \
-    RUST_VERSION=1.98.1 \
-    RUSTUP_VERSION=1.29.1 \
-    RUSTUP_SHA256=dda7234360b7f578ca8b0ddcb80145646fa61a67c1720a5abc7051b35c9fcb71
+    RUST_VERSION=1.100.0 \
+    RUSTUP_VERSION=1.29.3 \
+    RUSTUP_SHA256=b1c8cb14e30889e7e2999e6b69e62d9e9b9ffc0f4df8180564d306d9680e6c55
 
 RUN curl -sSfL -o /tmp/rustup-init \
         "https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/x86_64-unknown-linux-gnu/rustup-init" && \
